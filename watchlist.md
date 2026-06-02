@@ -44,6 +44,14 @@ Last refreshed: **2026-06-02**.
 |---|---|---|---|
 | In progress | Goldman Sachs ~$709M campus delivery | Downtown anchor survives team exits | Under construction |
 
+## Records trail (see deals/option-agreement-records-trail.md)
+
+| When | Catalyst | Why it matters | Status |
+|---|---|---|---|
+| Now | Recorded Memorandum of Option @ Dallas County Clerk | Would confirm existence + buyer LLC + parcels | Not found (couldn't query portal) |
+| Now | Buyer entity ID in DCAD/SOS (watch 5420 S. Durango Dr. LV) | Tells us Mavs- vs. Sands-vehicle | Open lead |
+| TBD | Life Time JV / Seritage portion sign-off | Who must consent to the land transfer | To verify |
+
 ## Open questions to run down next session
 
 1. Pull the actual **TIRZ plan documents** (base year, cap, term, transfer language) for
