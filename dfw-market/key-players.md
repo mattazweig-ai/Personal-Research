@@ -15,6 +15,25 @@ deals we track. Updated as we learn more.
   groundbreak Nov 2025; ~296 units + ~13.5k sf retail; ~2027 open). Signals deep-pocketed,
   patient corporate capital validating the site pre-arena.
 - **Anthem Development** — Co-developer partner on Dallas Midtown vertical phase.
+- **Seritage Growth Properties (NYSE: SRG)** — Owns ~20 of the 104 acres (Sears-bankruptcy
+  legacy). Because it's *public*, its 8-K disclosed the arena option terms for its slice
+  ($50.76M / ~20 ac; buyer = ADI). The reason any deal terms are public at all.
+- **Life Time Inc.** — Holds a portion of the 104-acre assembly (third seller alongside
+  Beck + Seritage). Terms undisclosed.
+- **Arena Development Intermediate, LLC (ADI)** — The **Mavs' buyer vehicle** on the option
+  (per Seritage 8-K). Notably NOT a Sands "Village Walk RE 2"-style LLC → signals the arena
+  and the Sands casino land are separate strategies.
+
+## Plano / Stars side (added 2026-06-03)
+
+- **Levin Holdings, Cawley Partners, Centennial Real Estate** — Master developers of
+  **"The Bend"** at Shops at Willow Bend, Plano (the Stars' proposed ~107-ac arena district).
+- **City of Plano** — Public-subsidy partner: would own the arena and contribute up to
+  ~$700M via a 900+-acre TIRZ, leasing to the Stars 30 yrs.
+- **Dallas Stars Enterprises (DSE)** — The Stars' entity; proposed 30-yr arena lessee.
+- **Judge Bill Whitehill (Dallas Business Court)** — Awarded the Mavs full AAC control
+  (~May 2026); found the Stars breached by moving HQ to Frisco. Stars appealing (15th COA;
+  ex-Chief Justice **Wallace B. Jefferson** on the appellate team).
 
 ## Team / Sports-Capital Owners
 

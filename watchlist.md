@@ -1,7 +1,16 @@
 # Watchlist — Dated Catalysts
 
 Theses live or die on catalysts. Track these; update dates/status as they resolve.
-Last refreshed: **2026-06-02**.
+Last refreshed: **2026-06-03**.
+
+## 🔥 Near-term hard dates (added 2026-06-03)
+
+| When | Catalyst | Why it matters | Status |
+|---|---|---|---|
+| **2026-06-08** | Plano City Council hearing on Stars LOI ("The Bend") | First go/no-go on the public-subsidy Stars deal | Upcoming |
+| **2026-06-30** | Mavs' first option **termination off-ramp** (per Seritage 8-K) | If they don't walk, carry payments begin → commitment signal | Upcoming |
+| Pending | Stars **appeal** of AAC ruling (15th Court of Appeals) | Could reshape both teams' exit timing/economics | Filed |
+| Nov 3, 2026 | TX Lt. Gov. race (Patrick favored vs. Goodwin) | Patrick = the casino roadblock; re-election kills 2027 odds | Pending |
 
 ## Mavs arena @ Valley View
 
@@ -48,9 +57,10 @@ Last refreshed: **2026-06-02**.
 
 | When | Catalyst | Why it matters | Status |
 |---|---|---|---|
-| Now | Recorded Memorandum of Option @ Dallas County Clerk | Would confirm existence + buyer LLC + parcels | Not found (couldn't query portal) |
-| Now | Buyer entity ID in DCAD/SOS (watch 5420 S. Durango Dr. LV) | Tells us Mavs- vs. Sands-vehicle | Open lead |
-| TBD | Life Time JV / Seritage portion sign-off | Who must consent to the land transfer | To verify |
+| ~~Now~~ | ~~Buyer entity ID~~ | **RESOLVED:** buyer = **Arena Development Intermediate, LLC** (Mavs vehicle, not Sands) | ✅ via Seritage 8-K |
+| Now | Recorded Memorandum of Option @ Dallas County Clerk | Would confirm county-level filing + parcels | Still not retrieved (portal 403) |
+| TBD | **Beck Ventures + Life Time Inc.** parcel terms (~80 ac) | The majority of the dirt; price still hidden | Private — no filing duty |
+| TBD | Seritage subsidiary seller entity name | Completes the chain | Not disclosed in 8-K snippets |
 
 ## Open questions to run down next session
 

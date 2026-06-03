@@ -5,6 +5,20 @@
 **Status:** Pre-entitlement. No renderings, no published cost, no confirmed financing mix.
 **Target:** ~30-month build, open by end of 2031 / 2031–32 season (AAC lease expires July 2031).
 
+> ### ⏱️ UPDATE 2026-06-03 — terms now partly public (see research/2026-06-03-deep-research-update.md)
+> - **Three owners, not one:** **Seritage Growth Properties** (~20 ac), **Beck Ventures**
+>   (Scott & Jeff Beck, majority), **Life Time Inc.** Only Seritage's slice is disclosed.
+> - **Seritage 8-K** (public-co. filing) revealed the buyer entity = **Arena Development
+>   Intermediate, LLC (a Mavs vehicle — NOT a Sands LLC)**, price **$50.76M / ~20 ac
+>   (~$2.54M/acre)**, option fee **$169,200**, **June 30 2026 first off-ramp**, carry
+>   **$126.9K→$274.95K/mo**, **closing by Jan 31 2028** (or 90 days post-entitlements),
+>   **cross-defaulted** with the Beck/Life Time "Related PSA." Beck/Life Time terms: still hidden.
+> - **No casino** (Welts on record); Mavs chose Valley View **over** Sands' Irving land →
+>   casino-optionality thesis for this site is effectively **dead**. Downgrade LVS angle.
+> - **Political risk live:** CM **Maxie Johnson opposes**; the Redbird/TIF-barbell "is the
+>   south subsidizing the north?" critique is now a public fight (our §4).
+> - **Stars formalized Plano** (public-subsidy model) — see deals/stars-plano-willow-bend.md.
+
 ---
 
 ## 1. The one-paragraph thesis

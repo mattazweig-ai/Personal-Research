@@ -4,16 +4,25 @@
 **Date run:** 2026-06-02 (two parallel research agents: press + public records)
 
 ## Verdict
-- **Terms are NOT publicly disclosed and NOT leaked.** Confirmed it's a signed *option*
-  (plural agreements) on ~104 acres; price, option fee, expiration, contingencies, and
-  buyer/seller legal-entity names are all undisclosed. Bisnow: "terms weren't released."
-- **No recorded instrument has been cited by any reporter** (no Memorandum of Option,
-  no deed, no DCAD ownership change).
-- **Caveat — inconclusive on records:** both agents were HTTP-403 blocked from the actual
-  record portals (Dallas County Clerk, DCAD, OpenCorporates, TX SOS) in this environment.
-  So "not found" reflects (a) press says undisclosed AND (b) we couldn't query the county
-  index. A recorded memorandum could exist and simply hasn't been retrieved. Needs a
-  manual search from an unblocked browser.
+> **RESOLVED 2026-06-03:** terms surfaced — **not via the county clerk, but via an SEC
+> filing.** Seritage Growth Properties (public co., owns ~20 of the 104 acres) disclosed
+> its slice in an **8-K** (~June 1). So the records-trail instinct was right; the channel
+> was federal securities disclosure, because one of the three sellers is publicly traded.
+
+**Now known (from the Seritage 8-K):**
+- **Buyer entity: Arena Development Intermediate, LLC (ADI)** — a **Mavs** vehicle, **not**
+  a Sands "Village Walk RE 2"-style LLC. (Tell: arena and casino are separate vehicles.)
+- **Seritage parcel: $50.76M / ~20 ac (~$2.54M/acre).** Option fee $169,200; terminable by
+  **2026-06-30**; carry $126.9K/mo (Jul–Dec 2026) → $274.95K/mo (Jan 2027–Jan 2028);
+  **close by 2028-01-31** or 90 days post-entitlements; **cross-defaulted** with the
+  Beck/Life Time "Related PSA."
+
+**Still NOT disclosed / not found:**
+- **Beck Ventures + Life Time Inc. terms** (the ~80-acre majority) — private parties, no
+  filing obligation.
+- **No county-recorded Memorandum of Option or deed**, and no DCAD ownership change cited.
+  Record portals were still 403-blocked from this environment — so a recorded memo may
+  exist unretrieved. The manual playbook below remains the way to confirm.
 
 ## Don't conflate (traps)
 - The **"$85M"** figure circulating = the *Premier at Dallas Midtown* building, NOT the
