@@ -10,6 +10,8 @@ Last refreshed: **2026-06-03**.
 | **2026-06-08** | Plano City Council hearing on Stars LOI ("The Bend") | First go/no-go on the public-subsidy Stars deal | Upcoming |
 | **2026-06-30** | Mavs' first option **termination off-ramp** (per Seritage 8-K) | If they don't walk, carry payments begin → commitment signal | Upcoming |
 | Pending | Stars **appeal** of AAC ruling (15th Court of Appeals) | Could reshape both teams' exit timing/economics | Filed |
+| TBD (entitlement phase) | **Arena Traffic Impact Analysis (TIA)** | Reveals real parking count + mitigation scope + WHO PAYS | None yet |
+| TBD | People-mover (~$95M) construction funding / grant award | Only fix that cuts auto mode share; currently unfunded | Planning only ($10M) |
 | Nov 3, 2026 | TX Lt. Gov. race (Patrick favored vs. Goodwin) | Patrick = the casino roadblock; re-election kills 2027 odds | Pending |
 
 ## Mavs arena @ Valley View
