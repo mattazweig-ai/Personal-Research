@@ -1,9 +1,18 @@
 # Stars Arena @ "The Bend" / Shops at Willow Bend (Plano)
 
-**Site:** ~107-acre arena site at the dying Shops at Willow Bend, Plano (Collin County)
-**Status (2026-06-03):** Formal **non-binding LOI** signed (June 2); **Plano Council
-hearing June 8, 2026** (not yet held).
+**Site:** **~76-acre** arena site (Park Blvd & Dallas North Tollway) at the dying Shops at
+Willow Bend, Plano (Collin County) — *council-packet figure; earlier coverage said ~75/~107,
+the ~107 appears to have conflated the arena site with the broader TIRZ.*
+**Status (2026-06-08):** Formal **non-binding LOI** (signed by Stars/**Dallas Sports &
+Entertainment LP**, CEO Brad Alberts) **on the Plano Council agenda for a vote TODAY, June 8**
+— outcome not yet reported.
 **Target:** Demolition ~fall 2026 · build 2028–29 · ~20,000-seat arena open 2031–32.
+
+> **UPDATE 2026-06-08:** June 8 agenda also includes a **separate $15M incentive to Centennial**
+> (mall owner): **$10M for demolition** (inline mall, theater, Dillard's, Crayola Experience) +
+> **$5M for a visitor center** — first hard public money committed to the redevelopment
+> *independent of* the arena. Reinforces "The Bend proceeds with or without the Stars."
+> Meanwhile the **Mavs' Valley View item is reported as headed to Dallas City Council this week.**
 
 ---
 

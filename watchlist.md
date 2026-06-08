@@ -7,7 +7,8 @@ Last refreshed: **2026-06-03**.
 
 | When | Catalyst | Why it matters | Status |
 |---|---|---|---|
-| **2026-06-08** | Plano City Council hearing on Stars LOI ("The Bend") | First go/no-go on the public-subsidy Stars deal | Upcoming |
+| **2026-06-08** | Plano Council vote on Stars LOI + **$15M Centennial demo/visitor-center incentive** | First go/no-go on Stars deal; demo money commits redevelopment regardless | **Vote today — outcome pending** |
+| This week | Mavs Valley View item to **Dallas City Council** | First Dallas city-side step on the arena | Pending |
 | **2026-06-30** | Mavs' first option **termination off-ramp** (per Seritage 8-K) | If they don't walk, carry payments begin → commitment signal | Upcoming |
 | Pending | Stars **appeal** of AAC ruling (15th Court of Appeals) | Could reshape both teams' exit timing/economics | Filed |
 | TBD (entitlement phase) | **Arena Traffic Impact Analysis (TIA)** | Reveals real parking count + mitigation scope + WHO PAYS | None yet |
