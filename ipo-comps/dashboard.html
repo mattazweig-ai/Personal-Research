@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>IPO Oversubscription Comps — Dashboard</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --line:#2a3441;
+    --txt:#e6edf3; --mut:#8b97a6; --accent:#4493f8; --up:#3fb950; --down:#f85149;
+    --warn:#d29922; --chip:#21262d;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  header{padding:18px 16px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);z-index:20}
+  h1{font-size:19px;margin:0 0 4px}
+  .sub{color:var(--mut);font-size:12.5px}
+  .banner{background:#1d2530;border:1px solid var(--line);border-left:3px solid var(--warn);
+    margin:12px 16px;padding:10px 12px;border-radius:8px;color:#cdd6e0;font-size:12.5px}
+  .wrap{padding:0 12px 60px}
+  .spacex-btn{display:block;width:calc(100% - 24px);margin:14px 12px;padding:16px;
+    background:linear-gradient(135deg,#11233f,#0c1626);border:1px solid #29405f;border-radius:12px;
+    color:#fff;text-align:left;font-size:16px;font-weight:600;cursor:pointer}
+  .spacex-btn small{display:block;color:#8fb4e6;font-weight:400;font-size:12px;margin-top:3px}
+  .spacex-btn .arrow{float:right;color:#4493f8;font-size:20px}
+  .controls{display:flex;gap:6px;flex-wrap:wrap;padding:4px 12px 10px}
+  .controls button{background:var(--chip);border:1px solid var(--line);color:var(--mut);
+    padding:6px 11px;border-radius:999px;font-size:12.5px;cursor:pointer}
+  .controls button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead th{position:sticky;top:96px;background:var(--panel);color:var(--mut);font-weight:600;
+    text-align:right;padding:9px 8px;border-bottom:1px solid var(--line);font-size:11.5px;
+    white-space:nowrap;cursor:pointer;user-select:none}
+  thead th:first-child{text-align:left}
+  thead th .car{opacity:.4;font-size:9px}
+  thead th.sorted .car{opacity:1;color:var(--accent)}
+  tbody td{padding:10px 8px;border-bottom:1px solid #1b222c;text-align:right;white-space:nowrap}
+  tbody td:first-child{text-align:left;white-space:normal}
+  tbody tr{cursor:pointer}
+  tbody tr:active{background:#1a212b}
+  .nm{font-weight:600}.tk{color:var(--mut);font-size:11px;font-weight:400}
+  .up{color:var(--up)}.down{color:var(--down)}.mut{color:var(--mut)}
+  .badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:600}
+  .b-hi{background:rgba(248,81,73,.15);color:#ff7b72}
+  .b-mid{background:rgba(210,153,34,.15);color:#e3b341}
+  .b-na{background:#21262d;color:#6e7b8a;font-weight:400}
+  .warnflag{color:var(--warn);font-size:10px}
+  /* drawer */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.2s;z-index:40}
+  .scrim.show{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:var(--panel);
+    border-top-left-radius:16px;border-top-right-radius:16px;border-top:1px solid var(--line);
+    transform:translateY(100%);transition:.25s;z-index:50;padding:0 0 40px}
+  .drawer.show{transform:translateY(0)}
+  .dh{padding:16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
+  .dh h2{margin:0;font-size:18px}.dh .x{float:right;color:var(--mut);font-size:24px;line-height:1;cursor:pointer}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin:14px 16px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .cell{background:var(--panel);padding:10px 12px}
+  .cell .k{color:var(--mut);font-size:11px;margin-bottom:2px}
+  .cell .v{font-size:14px;font-weight:600}
+  .src{margin:0 16px 12px;padding:11px 13px;background:var(--panel2);border-radius:10px;font-size:12.5px;color:#c4cdd8}
+  .src .lbl{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+  /* spacex view */
+  .sx{padding:4px 16px 40px}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+  .kpi{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px}
+  .kpi .k{color:var(--mut);font-size:11px}.kpi .v{font-size:20px;font-weight:700;margin-top:2px}
+  .kpi .v small{font-size:12px;color:var(--mut);font-weight:400}
+  .bookrow{margin:18px 0}
+  .bookrow .lab{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+  .track{height:34px;background:var(--chip);border-radius:8px;position:relative;overflow:hidden;border:1px solid var(--line)}
+  .fill{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;padding-left:10px;font-size:12.5px;font-weight:600;color:#fff}
+  .fill.demand{background:linear-gradient(90deg,#1f6feb,#388bfd)}
+  .fill.raise{background:linear-gradient(90deg,#238636,#2ea043)}
+  .fill.shoe{background:repeating-linear-gradient(45deg,#2ea043,#2ea043 6px,#1c6e2c 6px,#1c6e2c 12px)}
+  .priceline{position:absolute;top:-4px;bottom:-4px;width:2px;background:#fff}
+  svg{width:100%;height:auto;display:block}
+  .note{font-size:11.5px;color:var(--mut);margin-top:6px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--mut);margin:6px 0 0}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+  footer{color:var(--mut);font-size:11.5px;padding:18px 16px 40px;border-top:1px solid var(--line);margin-top:10px}
+  a{color:var(--accent)}
+  .section-t{font-size:14px;font-weight:700;margin:22px 0 8px;color:#cdd6e0}
+</style>
+</head>
+<body>
+<header>
+  <h1>IPO Oversubscription Comps</h1>
+  <div class="sub">36 US IPOs · Jan 2024 – Jun 2026 · + Aramco benchmark · + SpaceX (pricing Jun 11)</div>
+</header>
+
+<div class="banner">
+  <b>Data note:</b> Prices are <b>as-of ~Jun 9 2026 snapshots</b>, not a live feed. Oversubscription
+  numbers are <b>press leaks</b> (no filing discloses them) — each carries a source; unsourced =
+  <span class="b-na badge">n/a</span>, never estimated. <span class="warnflag">⚠</span> = single-source / unverified.
+</div>
+
+<button class="spacex-btn" onclick="openSpaceX()">
+  <span class="arrow">›</span>
+  🚀 SpaceX (SPCX) — tap to open the order book
+  <small>~$75B raise · $135 fixed · ~2× oversubscribed · ~$1.77T · prices Jun 11, trades Jun 12</small>
+</button>
+
+<div class="controls" id="filters">
+  <button data-f="all" class="on">All 36</button>
+  <button data-f="hasnum">Has oversub #</button>
+  <button data-f="2025">2025–26</button>
+  <button data-f="2024">2024</button>
+  <button data-f="blowout">≥20× books</button>
+</div>
+
+<div class="wrap">
+  <table id="tbl">
+    <thead><tr>
+      <th data-s="name">Company <span class="car">▾</span></th>
+      <th data-s="datev">Date <span class="car">▾</span></th>
+      <th data-s="raisev">Raised <span class="car">▾</span></th>
+      <th data-s="oversubv">Oversub <span class="car">▾</span></th>
+      <th data-s="day1v">Day-1 <span class="car">▾</span></th>
+      <th data-s="curv">Now vs offer <span class="car">▾</span></th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+
+<div class="scrim" id="scrim" onclick="closeAll()"></div>
+<div class="drawer" id="drawer"></div>
+
+<footer>
+  Built 2026-06-09 from the research in <code>ipo-comps/oversubscription-comps.md</code>.
+  Oversubscription multiples are roadshow leaks (Reuters / Bloomberg / FT / CNBC), not filings —
+  patchy, anonymous, often conflicting. The SpaceX "order book" is <b>illustrative</b>: real IPO
+  books are private and never published; bars reflect <b>reported</b> demand (~$150B vs $75B raise).
+  Not investment advice.
+</footer>
+
+<script>
+// ---- DATA ----------------------------------------------------------------
+// oversubv: representative numeric for sorting (null = n/a). day1v / curv: percent (null = n/a)
+const D = [
+ {name:"Saudi Aramco",tk:"2222.SR",date:"2019-12-11",datev:20191211,exch:"Tadawul",raised:"$25.6B ($29.4B w/GS)",raisev:25600,offer:"$8.53",range:"SAR 30–32",vs:"Top",ipo:"~$1.7T",oversub:"2.95× inst",oversubv:2.95,osrc:"Nasdaq/Reuters/Argaam, Dec 2019. '465%' combined book also cited. Domestic book; foreign only ~10.5%.",gs:"Y (full)",day1:"+10% (limit)",day1v:10,cur:"n/m",curv:null,conf:1},
+ {name:"Arm Holdings",tk:"ARM",date:"2023-09-14",datev:20230914,exch:"Nasdaq",raised:"~$4.87B",raisev:4870,offer:"$51",range:"$47–51",vs:"Top",ipo:"~$54.5B",oversub:"6×→10×+",oversubv:10,osrc:"Reuters Sep 8 (6×) → The National Sep 12 (10×) → Fortune Sep 14 (10×+). Built through roadshow; SoftBank declined to raise price. Chip-customer cornerstone consortium.",gs:"Unknown",day1:"+24.7%",day1v:24.7,cur:"▲ above",curv:null,conf:1},
+ {name:"Reddit",tk:"RDDT",date:"2024-03-21",datev:20240321,exch:"NYSE",raised:"$748M gross",raisev:748,offer:"$34",range:"$31–34",vs:"Top",ipo:"~$6.4B",oversub:"4–5×",oversubv:4.5,osrc:"Reuters exclusive Mar 17 '24; Bloomberg same day. Consistent. ~75k longtime Redditors got a directed-share program at $34.",gs:"Unknown",day1:"+48%",day1v:48,cur:"▲ above",curv:null,conf:1},
+ {name:"Astera Labs",tk:"ALAB",date:"2024-03-20",datev:20240320,exch:"Nasdaq",raised:"~$713M",raisev:713,offer:"$36",range:"$27–30→32–34→36",vs:"Above",ipo:"~$5.5B",oversub:"n/a",oversubv:null,osrc:"No press multiple found. Range raised twice then priced $2 above — strong demand inferred but no number to cite.",gs:"Y (likely)",day1:"+72%",day1v:72,cur:"▲▲ multi-bagger",curv:null,conf:0},
+ {name:"Birkenstock",tk:"BIRK",date:"2023-10-11",datev:20231011,exch:"NYSE",raised:"~$1.5B",raisev:1500,offer:"$46",range:"$44–49",vs:"Within",ipo:"~$8.6B",oversub:"n/a",oversubv:null,osrc:"FT said 'heavily oversubscribed' (no number). Anchors: Arnault family office, Durable, Norway SWF.",gs:"Unknown",day1:"−12.6%",day1v:-12.6,cur:"▲ recovered",curv:null,conf:0},
+ {name:"Kenvue",tk:"KVUE",date:"2023-05-04",datev:20230504,exch:"NYSE",raised:"$3.8B ($4.37B w/GS)",raisev:3800,offer:"$22",range:"$20–23",vs:"Top",ipo:"~$41B",oversub:"n/a",oversubv:null,osrc:"No multiple found. Deal upsized + greenshoe fully exercised = strong demand, but no number.",gs:"Y (full)",day1:"+22.3%",day1v:22.3,cur:"▼ faded",curv:null,conf:0},
+ {name:"Amer Sports",tk:"AS",date:"2024-02-01",datev:20240201,exch:"NYSE",raised:"~$1.37B",raisev:1370,offer:"$13",range:"$16–18",vs:"BELOW",ipo:"~$6.3B",oversub:"n/a (weak)",oversubv:null,osrc:"Priced below range on weak demand. Existing holders backstopped ~37%. Only ~2.5M shares traded day 1.",gs:"Unknown",day1:"+3.1%",day1v:3.1,cur:"▲ near offer",curv:null,conf:0},
+ {name:"Lineage",tk:"LINE",date:"2024-07-25",datev:20240725,exch:"Nasdaq",raised:"~$4.44B",raisev:4440,offer:"$78",range:"$70–82",vs:"Within (top)",ipo:">$18B",oversub:"n/a",oversubv:null,osrc:"Largest 2024 IPO. Norges cornerstone up to ~$900M. No multiple leaked.",gs:"Unknown",day1:"~+3%",day1v:3,cur:"−59% (~$31.80)",curv:-59,conf:0},
+ {name:"Viking Holdings",tk:"VIK",date:"2024-05-01",datev:20240501,exch:"NYSE",raised:"~$1.54B",raisev:1540,offer:"$24",range:"$21–25",vs:"Top",ipo:">$10B",oversub:"15×",oversubv:15,osrc:"Seeking Alpha, late-Apr '24 (pre-pricing). Single source, snippet only.",gs:"Y (full)",day1:"+8%",day1v:8,cur:"+269% (~$88.64)",curv:269,conf:2},
+ {name:"Waystar",tk:"WAY",date:"2024-06-07",datev:20240607,exch:"Nasdaq",raised:"~$968M",raisev:968,offer:"$21.50",range:"$20–23",vs:"Mid",ipo:"~$3.7B",oversub:"n/a",oversubv:null,osrc:"No multiple found. Weak debut (closed below offer).",gs:"Unknown",day1:"−3.7%",day1v:-3.7,cur:"+13% (~$24, Feb'26)",curv:13,conf:0},
+ {name:"StandardAero",tk:"SARO",date:"2024-10-02",datev:20241002,exch:"NYSE",raised:"~$1.44B",raisev:1440,offer:"$24",range:"$20–23",vs:"Above",ipo:"~$8B",oversub:"n/a",oversubv:null,osrc:"'Strong demand' qualitatively (Renaissance/Bloomberg); no number.",gs:"Y (secondary)",day1:"+36%",day1v:36,cur:"+14% (~$27.36)",curv:14,conf:0},
+ {name:"Rubrik",tk:"RBRK",date:"2024-04-25",datev:20240425,exch:"NYSE",raised:"~$752M",raisev:752,offer:"$32",range:"$28–31",vs:"Above",ipo:"~$5.6B",oversub:"20×",oversubv:20,osrc:"Fortune, Apr 24 '24. Single source, snippet only; attribution unconfirmed.",gs:"Unknown",day1:"+16%",day1v:16,cur:"+122% (~$70.95)",curv:122,conf:2},
+ {name:"Tempus AI",tk:"TEM",date:"2024-06-14",datev:20240614,exch:"Nasdaq",raised:"~$411M",raisev:411,offer:"$37",range:"$35–37",vs:"Top",ipo:"~$6.1B",oversub:"n/a",oversubv:null,osrc:"IFR: 'well oversubscribed, no price sensitivity' — but no specific multiple.",gs:"Unknown",day1:"+9%",day1v:9,cur:"+41% (~$52)",curv:41,conf:0},
+ {name:"Ibotta",tk:"IBTA",date:"2024-04-18",datev:20240418,exch:"NYSE",raised:"~$577M",raisev:577,offer:"$88",range:"$76–84",vs:"Above",ipo:"~$2.67B",oversub:"n/a",oversubv:null,osrc:"No multiple found. Walmart/Koch-backed; mostly secondary.",gs:"Unknown",day1:"+17%",day1v:17,cur:"−61% (~$34.73)",curv:-61,conf:0},
+ {name:"UL Solutions",tk:"ULS",date:"2024-04-12",datev:20240412,exch:"NYSE",raised:"~$946M ($1.08B w/GS)",raisev:946,offer:"$28",range:"~within",vs:"Within",ipo:"~$5.6B",oversub:"n/a",oversubv:null,osrc:"100% secondary. No multiple; greenshoe fully exercised.",gs:"Y (full)",day1:"+23%",day1v:23,cur:"+246% (~$96.81)",curv:246,conf:0},
+ {name:"OneStream",tk:"OS",date:"2024-07-24",datev:20240724,exch:"Nasdaq",raised:"~$490M",raisev:490,offer:"$20",range:"$17–19",vs:"Above",ipo:"~$6B",oversub:"n/a",oversubv:null,osrc:"No multiple. KKR-backed. Taken private by Hg at $24/sh, ~Apr 2026 (delisted).",gs:"Y (full)",day1:"+34%",day1v:34,cur:"+20% (taken private $24)",curv:20,conf:0},
+ {name:"ServiceTitan",tk:"TTAN",date:"2024-12-12",datev:20241212,exch:"Nasdaq",raised:"~$625M",raisev:625,offer:"$71",range:"$52–57→65–67→71",vs:"Above",ipo:"~$8.5B",oversub:"n/a",oversubv:null,osrc:"'More demand than bankers expected' (Axios); range raised twice; no number leaked.",gs:"Y (full)",day1:"+42%",day1v:42,cur:"+8% (~$76.96)",curv:8,conf:0},
+ {name:"Venture Global",tk:"VG",date:"2025-01-24",datev:20250124,exch:"NYSE",raised:"$1.75B",raisev:1750,offer:"$25",range:"$40–46→23–27",vs:"BELOW (slashed)",ipo:"~$60.5B",oversub:"n/a (weak)",oversubv:null,osrc:"Range slashed >40% — weak demand. No equity multiple. (A debt 'oversubscribed' hit is unrelated.)",gs:"Unknown",day1:"−4%",day1v:-4,cur:"−48% (~$12.9)",curv:-48,conf:0},
+ {name:"SailPoint",tk:"SAIL",date:"2025-02-13",datev:20250213,exch:"Nasdaq",raised:"~$1.38B",raisev:1380,offer:"$23",range:"$19–21",vs:"Above",ipo:"~$11.5B+",oversub:"20×",oversubv:20,osrc:"Nasdaq. Single source; no top-tier corroboration. Thoma Bravo-backed.",gs:"Unknown",day1:"n/a",day1v:null,cur:"−23% (~$17.7)",curv:-23,conf:2},
+ {name:"Karman Holdings",tk:"KRMN",date:"2025-02-13",datev:20250213.5,exch:"NYSE",raised:"$506M ($582M w/GS)",raisev:506,offer:"$22",range:"$18–20",vs:"Above",ipo:"~$4B",oversub:"n/a",oversubv:null,osrc:"No multiple. Above range + full greenshoe = strong, but no number. Defense/space.",gs:"Y (full)",day1:"+30%",day1v:30,cur:"+135% (~$51.8)",curv:135,conf:0},
+ {name:"Smithfield Foods",tk:"SFD",date:"2025-01-28",datev:20250128,exch:"Nasdaq",raised:"~$261M (co)",raisev:261,offer:"$20",range:"$23–27",vs:"BELOW",ipo:"~$7.9B",oversub:"n/a (weak)",oversubv:null,osrc:"Priced $3 below a downsized range — soft demand. No multiple.",gs:"Unknown",day1:"~flat",day1v:0,cur:"+27% (~$25.3)",curv:27,conf:0},
+ {name:"CoreWeave",tk:"CRWV",date:"2025-03-28",datev:20250328,exch:"Nasdaq",raised:"~$1.5B",raisev:1500,offer:"$40",range:"$47–55",vs:"BELOW (downsized)",ipo:"~$23B",oversub:"n/a*",oversubv:null,osrc:"Bloomberg Mar 21 said 'oversubscribed' — CONTRADICTED by outcome: downsized 49M→37.5M, priced below range, Nvidia $250M anchor. Carried as n/a.",gs:"Unknown",day1:"~0%",day1v:0,cur:"+164% (~$105.75)",curv:164,conf:0},
+ {name:"eToro",tk:"ETOR",date:"2025-05-14",datev:20250514,exch:"Nasdaq",raised:"~$620M tot",raisev:620,offer:"$52",range:"$46–50",vs:"Above",ipo:"~$4.2B",oversub:"~10×",oversubv:10,osrc:"Finance Magnates / FinanceFeeds May 12 '25. Books closed a day early. Greenshoe exercised in full (1.79M sh/$93M).",gs:"Y (full)",day1:"+29%",day1v:29,cur:"−25% (~$39.09)",curv:-25,conf:1},
+ {name:"Hinge Health",tk:"HNGE",date:"2025-05-22",datev:20250522,exch:"NYSE",raised:"~$437M",raisev:437,offer:"$32",range:"$28–32",vs:"Top",ipo:"~$2.6B",oversub:"n/a",oversubv:null,osrc:"Seeking Alpha: 'orders exceed supply' — no specific multiple.",gs:"Unknown",day1:"+17%",day1v:17,cur:"+68% (~$53.63)",curv:68,conf:0},
+ {name:"MNTN",tk:"MNTN",date:"2025-05-22",datev:20250522.5,exch:"NYSE",raised:"~$187M",raisev:187,offer:"$16",range:"n/a",vs:"—",ipo:"~$1.2B",oversub:"dbl-digit/14×",oversubv:14,osrc:"Bloomberg 'at least double-digit'; tradingcalendar '14×' (single low-tier). Trust 'double-digit'. Ryan Reynolds-linked CTV adtech.",gs:"Unknown",day1:"+65%",day1v:65,cur:"−43% (~$9.20)",curv:-43,conf:2},
+ {name:"Circle",tk:"CRCL",date:"2025-06-05",datev:20250605,exch:"NYSE",raised:"~$1.1B",raisev:1100,offer:"$31",range:"$27–28",vs:"Above",ipo:"~$8.1B",oversub:"25×",oversubv:25,osrc:"Bloomberg Jun 4 '25 (25×); Morningstar source said '25–30×'. USDC stablecoin. Complaints of 'measly' allocations.",gs:"Unknown",day1:"+168%",day1v:168,cur:"+166% (~$82.60)",curv:166,conf:1},
+ {name:"Chime",tk:"CHYM",date:"2025-06-12",datev:20250612,exch:"Nasdaq",raised:"~$994M",raisev:994,offer:"$27",range:"$24–26",vs:"Above",ipo:"~$11.6B",oversub:">10×",oversubv:10,osrc:"Bloomberg: 'double-digit oversubscription'; top accounts got majority of shares. Greenshoe exercised.",gs:"Y (full)",day1:"+37%",day1v:37,cur:"−33% (~$18.08)",curv:-33,conf:1},
+ {name:"Voyager Tech",tk:"VOYG",date:"2025-06-11",datev:20250611,exch:"NYSE",raised:"$383M ($402M w/GS)",raisev:383,offer:"$31",range:"$26–29",vs:"Above",ipo:"~$1.9B",oversub:"n/a",oversubv:null,osrc:"'High demand'/upsized (Via Satellite) — no number. Space/defense. Greenshoe exercised in full.",gs:"Y (full)",day1:"+84%",day1v:84,cur:"+34% (~$41.6)",curv:34,conf:0},
+ {name:"Figma",tk:"FIG",date:"2025-07-31",datev:20250731,exch:"NYSE",raised:"~$1.2B",raisev:1200,offer:"$33",range:"$25–28→30–32→33",vs:"Above",ipo:"~$19.3B",oversub:"~40×",oversubv:40,osrc:"Bloomberg Jul 29 '25 (re-verified). 100% roadshow conversion. Biggest first-day pop for a $1B+ US IPO in 3+ decades.",gs:"Unknown",day1:"+250%",day1v:250,cur:"−36% (~$21.11)",curv:-36,conf:1},
+ {name:"Bullish",tk:"BLSH",date:"2025-08-13",datev:20250813,exch:"NYSE",raised:"~$1.1B",raisev:1100,offer:"$37",range:"$28–31→32–33→37",vs:"Above",ipo:"~$5.4B",oversub:">20×",oversubv:20,osrc:"Bloomberg Aug 12 '25. BlackRock + ARK indicated ~$200M combined. Crypto exchange.",gs:"Unknown",day1:"+84%",day1v:84,cur:"+18% (~$43.66)",curv:18,conf:1},
+ {name:"Klarna",tk:"KLAR",date:"2025-09-10",datev:20250910,exch:"NYSE",raised:"~$1.37B",raisev:1370,offer:"$40",range:"$35–37",vs:"Above",ipo:"~$15.1B",oversub:"15×→25×+",oversubv:25,osrc:"CONFLICT: Sahm Capital Sep 8 (15×); IFR 'north of 25×'; Bloomberg Sep 9 (25×+). ~half of orders got zero. BNPL.",gs:"Unknown",day1:"+15%",day1v:15,cur:"−59% (~$16.58)",curv:-59,conf:1},
+ {name:"Via Transportation",tk:"VIA",date:"2025-09-12",datev:20250912,exch:"NYSE",raised:"~$493M",raisev:493,offer:"$46",range:"$40–44",vs:"Above",ipo:"~$3.65B",oversub:"n/a",oversubv:null,osrc:"'Well oversubscribed' (no number); Wellington indicated up to $100M.",gs:"Unknown",day1:"+7.6%",day1v:7.6,cur:"−67% (~$15)",curv:-67,conf:0},
+ {name:"Gemini",tk:"GEMI",date:"2025-09-12",datev:20250912.5,exch:"Nasdaq",raised:"~$425M (capped)",raisev:425,offer:"$28",range:"$24–26",vs:"Above",ipo:"~$3.3B",oversub:">20×",oversubv:20,osrc:"cryptonews/crypto.news Sep '25. $425M cap was a RESPONSE to >20× demand; books closed early. Winklevoss crypto.",gs:"Y (full)",day1:"faded",day1v:null,cur:"−85% (~$4.19)",curv:-85,conf:1},
+ {name:"StubHub",tk:"STUB",date:"2025-09-17",datev:20250917,exch:"NYSE",raised:"~$800M",raisev:800,offer:"$23.50",range:"$22–25",vs:"Mid",ipo:"~$8.6B",oversub:"~20×",oversubv:20,osrc:"Reuters (via BNN) Sep 12 '25. Closed below offer day 1.",gs:"Unknown",day1:"−6.4%",day1v:-6.4,cur:"−59% (~$9.75)",curv:-59,conf:1},
+ {name:"Netskope",tk:"NTSK",date:"2025-09-18",datev:20250918,exch:"Nasdaq",raised:"~$908M",raisev:908,offer:"$19",range:"$17–19 (rev. up)",vs:"Top",ipo:"~$7.3B",oversub:">20×",oversubv:20,osrc:"CNBC Sep 17–18 '25 — but CEO-sourced (self-reported), not a banker leak.",gs:"Unknown",day1:"+18%",day1v:18,cur:"−49% (~$9.65)",curv:-49,conf:2},
+ {name:"Medline",tk:"MDLN",date:"2025-12-17",datev:20251217,exch:"Nasdaq",raised:"~$6.26B",raisev:6260,offer:"$29",range:"$26–30",vs:"Top",ipo:"~$37–39B",oversub:">10×",oversubv:10,osrc:"financialcontent/WRAL Dec 18 '25 — single low-tier source. Largest US IPO since 2021.",gs:"Unknown",day1:"+41%",day1v:41,cur:"+17% (~$33.9)",curv:17,conf:2}
+];
+
+// ---- SpaceX special object -----------------------------------------------
+const SX = {raise:75, demand:150, shoe:11.2, raiseWithShoe:86.2, price:135, shares:555.6,
+  shoeShares:83.33, val:1770, oversub:2.0, retail:30};
+
+// ---- RENDER TABLE --------------------------------------------------------
+let sortKey="datev", sortDir=-1, filter="all";
+const rowsEl=document.getElementById("rows");
+
+function pass(d){
+  if(filter==="all")return true;
+  if(filter==="hasnum")return d.oversubv!=null;
+  if(filter==="2025")return d.datev>=20250101;
+  if(filter==="2024")return d.datev>=20240101 && d.datev<20250101;
+  if(filter==="blowout")return d.oversubv!=null && d.oversubv>=20;
+  return true;
+}
+function fmtPct(v,txt){
+  if(v==null)return '<span class="mut">'+(txt||"n/a")+'</span>';
+  const cls=v>0?"up":(v<0?"down":"mut");
+  return '<span class="'+cls+'">'+txt+'</span>';
+}
+function osBadge(d){
+  if(d.oversubv==null)return '<span class="badge b-na">n/a</span>';
+  const w = d.conf===2 ? ' <span class="warnflag">⚠</span>':'';
+  const cls = d.oversubv>=20?"b-hi":(d.oversubv>=10?"b-mid":"b-na");
+  return '<span class="badge '+cls+'">'+d.oversub+'</span>'+w;
+}
+function render(){
+  const list=D.filter(pass).slice().sort((a,b)=>{
+    let x=a[sortKey],y=b[sortKey];
+    if(x==null)x=-1e9; if(y==null)y=-1e9;
+    if(typeof x==="string"){x=x.toLowerCase();y=y.toLowerCase();}
+    return x<y?-sortDir:(x>y?sortDir:0);
+  });
+  rowsEl.innerHTML=list.map((d,i)=>{
+    const idx=D.indexOf(d);
+    return '<tr onclick="openRow('+idx+')">'+
+      '<td><span class="nm">'+d.name+'</span> <span class="tk">'+d.tk+'</span></td>'+
+      '<td class="mut">'+d.date.slice(0,7)+'</td>'+
+      '<td>'+d.raised.replace(/ \(.*?\)/,'')+'</td>'+
+      '<td>'+osBadge(d)+'</td>'+
+      '<td>'+fmtPct(d.day1v,d.day1)+'</td>'+
+      '<td>'+fmtPct(d.curv,d.cur.replace(/ \(.*?\)/,''))+'</td>'+
+    '</tr>';
+  }).join("");
+  document.querySelectorAll("thead th").forEach(th=>{
+    th.classList.toggle("sorted",th.dataset.s===sortKey);
+    const c=th.querySelector(".car"); if(c)c.textContent=th.dataset.s===sortKey?(sortDir<0?"▾":"▴"):"▾";
+  });
+}
+document.querySelectorAll("thead th").forEach(th=>th.onclick=()=>{
+  const k=th.dataset.s;
+  if(k===sortKey)sortDir*=-1; else{sortKey=k;sortDir=(k==="name")?1:-1;}
+  render();
+});
+document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#filters button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); filter=b.dataset.f; render();
+});
+
+// ---- DRAWER --------------------------------------------------------------
+const scrim=document.getElementById("scrim"), drawer=document.getElementById("drawer");
+function show(){scrim.classList.add("show");drawer.classList.add("show");}
+function closeAll(){scrim.classList.remove("show");drawer.classList.remove("show");}
+function cell(k,v){return '<div class="cell"><div class="k">'+k+'</div><div class="v">'+v+'</div></div>';}
+
+function openRow(i){
+  const d=D[i];
+  drawer.innerHTML='<div class="dh"><span class="x" onclick="closeAll()">×</span>'+
+    '<h2>'+d.name+' <span class="tk">'+d.tk+'</span></h2>'+
+    '<div class="sub">'+d.date+' · '+d.exch+'</div></div>'+
+    '<div class="grid">'+
+      cell("Amount raised",d.raised)+cell("Offer price",d.offer)+
+      cell("Filing range",d.range)+cell("Priced",d.vs)+
+      cell("IPO valuation",d.ipo)+cell("Oversubscribed",d.oversub+(d.conf===2?' ⚠':''))+
+      cell("Greenshoe",d.gs)+cell("Day-1 return",d.day1)+
+      cell("Now vs offer",d.cur)+cell("",("&nbsp;"))+
+    '</div>'+
+    '<div class="src"><div class="lbl">Oversubscription source / notes</div>'+d.osrc+'</div>'+
+    '<div class="src"><div class="lbl">Greenshoe = over-allotment option</div>'+
+      'Lets the banks sell ~15% extra shares if demand is strong. <b>Exercised</b> ≈ stock held above offer '+
+      '(banks took the extra shares); <b>not exercised</b> ≈ they bought in the open market to prop up a weak price. '+
+      'So "Y (full)" is itself a mild strength signal.</div>';
+  show();
+}
+
+// ---- SPACEX ORDER BOOK VIEW ---------------------------------------------
+function bar(label,valTxt,cls,pct,extra){
+  return '<div class="bookrow"><div class="lab"><span>'+label+'</span><span>'+valTxt+'</span></div>'+
+    '<div class="track"><div class="fill '+cls+'" style="width:'+pct+'%">'+(extra||'')+'</div>'+
+    (cls==='demand'?'':'')+'</div></div>';
+}
+function openSpaceX(){
+  const maxB=SX.demand; // scale to demand
+  const demandPct=100, raisePct=SX.raise/maxB*100, shoePct=SX.shoe/maxB*100;
+  // valuation step-up data (private tenders → IPO)
+  const steps=[["Jun '24 tender",210],["Dec '24 tender",350],["Jul '25 tender",400],
+    ["Dec '25 tender",800],["IPO mark",1770]];
+  const maxV=1770;
+  const svgW=320,barH=26,gap=10,padL=110,svgH=steps.length*(barH+gap)+8;
+  let svg='<svg viewBox="0 0 '+svgW+' '+svgH+'" preserveAspectRatio="xMidYMid meet">';
+  steps.forEach((s,i)=>{
+    const y=i*(barH+gap)+4, w=(s[1]/maxV)*(svgW-padL-8);
+    const col=i===steps.length-1?"#f0883e":"#388bfd";
+    svg+='<text x="0" y="'+(y+barH/2+4)+'" fill="#8b97a6" font-size="11">'+s[0]+'</text>';
+    svg+='<rect x="'+padL+'" y="'+y+'" width="'+w+'" height="'+barH+'" rx="5" fill="'+col+'"/>';
+    svg+='<text x="'+(padL+w+5)+'" y="'+(y+barH/2+4)+'" fill="#e6edf3" font-size="11" font-weight="600">$'+ (s[1]>=1000?(s[1]/1000).toFixed(2)+'T':s[1]+'B') +'</text>';
+  });
+  svg+='</svg>';
+
+  drawer.innerHTML='<div class="dh"><span class="x" onclick="closeAll()">×</span>'+
+    '<h2>🚀 SpaceX — SPCX</h2><div class="sub">Pricing Jun 11 · trades Jun 12 · Nasdaq + Nasdaq Texas</div></div>'+
+    '<div class="sx">'+
+    '<div class="kpis">'+
+      '<div class="kpi"><div class="k">Offer (FIXED, no range)</div><div class="v">$135</div></div>'+
+      '<div class="kpi"><div class="k">Base raise</div><div class="v">~$75B</div></div>'+
+      '<div class="kpi"><div class="k">Implied valuation</div><div class="v">~$1.77T</div></div>'+
+      '<div class="kpi"><div class="k">Oversubscribed</div><div class="v">~2×</div></div>'+
+    '</div>'+
+
+    '<div class="section-t">The "order book" — reported demand vs deal size</div>'+
+    bar("Investor orders (demand)","~$150B","demand",demandPct)+
+    bar("Base raise (shares offered)","~$75B","raise",raisePct)+
+    bar("Greenshoe (extra ~83.3M sh)","+~$11B → ~$86B","shoe",shoePct)+
+    '<div class="legend">'+
+      '<span><i class="sw" style="background:#388bfd"></i>Demand</span>'+
+      '<span><i class="sw" style="background:#2ea043"></i>Raise</span>'+
+      '<span><i class="sw" style="background:repeating-linear-gradient(45deg,#2ea043,#2ea043 4px,#1c6e2c 4px,#1c6e2c 8px)"></i>Greenshoe</span>'+
+    '</div>'+
+    '<div class="note">~$150B of orders against a ~$75B raise ≈ <b>2× covered</b>. Modest next to 2025\'s '+
+      'hot books (Figma ~40×, Circle/Klarna ~25×) — but the price was <b>fixed at $135 before the roadshow</b>, '+
+      'so this is demand at a non-negotiable price, not a bookbuild. ~30% of shares reportedly reserved for retail.</div>'+
+
+    '<div class="section-t">The real risk: valuation step-up</div>'+
+    svg+
+    '<div class="note">The ~$1.77T IPO mark is <b>~2.2× the ~$800B Dec-2025 private tender</b> ($421/sh) — '+
+      'a huge jump in ~6 months. The comps warn that deals pricing at the richest stretch into the hottest '+
+      'sentiment reversed hardest. Judge SpaceX on this, not on the 2× book.</div>'+
+
+    '<div class="src"><div class="lbl">⚠ This order book is illustrative</div>'+
+      'Real IPO order books are private to the underwriters and never published. These bars reflect '+
+      '<b>reported</b> figures (~$150B orders vs $75B raise) from Bloomberg / Yahoo / TNW, Jun 8–9 2026. '+
+      'Whole-company listing (not a Starlink carve-out); dual-class — Musk keeps ~79–82% of votes. Lead-left Goldman.</div>'+
+
+    '<div class="src"><div class="lbl">How it ranks on size</div>'+
+      '~$75B base ≈ <b>2.5× Saudi Aramco</b> ($29.4B, the prior record) and dwarfs every comp here '+
+      '(next: Medline $6.26B, Arm $4.87B, Lineage $4.44B). A float this large can\'t pop like a small one — '+
+      'expect a muted day-1 move regardless of "demand".</div>'+
+    '</div>';
+  show();
+}
+
+render();
+</script>
+</body>
+</html>
