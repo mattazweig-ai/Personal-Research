@@ -7,8 +7,10 @@ Last refreshed: **2026-06-03**.
 
 | When | Catalyst | Why it matters | Status |
 |---|---|---|---|
-| **2026-06-08** | Plano Council vote on Stars LOI + **$15M Centennial demo/visitor-center incentive** | First go/no-go on Stars deal; demo money commits redevelopment regardless | **Vote today — outcome pending** |
-| This week | Mavs Valley View item to **Dallas City Council** | First Dallas city-side step on the arena | Pending |
+| ~~2026-06-08~~ | ~~Plano Council vote~~ | **✅ APPROVED 8–0** — LOI + Levin/Cawley incentive + TIRZ + $700M plan | Done |
+| TBD (summer 2026) | **TX State Comptroller** sign-off on Plano "Venue Project Resolution" | Required before a referendum can be called | Pending |
+| **~2026-11-03** | **Plano PUBLIC REFERENDUM** on the $700M arena financing | Voters must approve; where subsidy deals die/get re-cut. Same ballot as Lt. Gov. race | Pending — **top Stars catalyst** |
+| This week | Mavs Valley View item to **Dallas City Council** | First Dallas city-side step on the arena | No arena vote yet; see City Hall TRO note |
 | **2026-06-30** | Mavs' first option **termination off-ramp** (per Seritage 8-K) | If they don't walk, carry payments begin → commitment signal | Upcoming |
 | Pending | Stars **appeal** of AAC ruling (15th Court of Appeals) | Could reshape both teams' exit timing/economics | Filed |
 | TBD (entitlement phase) | **Arena Traffic Impact Analysis (TIA)** | Reveals real parking count + mitigation scope + WHO PAYS | None yet |

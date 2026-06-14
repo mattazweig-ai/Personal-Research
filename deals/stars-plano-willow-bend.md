@@ -3,16 +3,19 @@
 **Site:** **~76-acre** arena site (Park Blvd & Dallas North Tollway) at the dying Shops at
 Willow Bend, Plano (Collin County) — *council-packet figure; earlier coverage said ~75/~107,
 the ~107 appears to have conflated the arena site with the broader TIRZ.*
-**Status (2026-06-08):** Formal **non-binding LOI** (signed by Stars/**Dallas Sports &
-Entertainment LP**, CEO Brad Alberts) **on the Plano Council agenda for a vote TODAY, June 8**
-— outcome not yet reported.
-**Target:** Demolition ~fall 2026 · build 2028–29 · ~20,000-seat arena open 2031–32.
+**Status (2026-06-14):** ✅ **Plano Council APPROVED unanimously 8–0 (June 8)** — the LOI,
+an incentive agreement with developers **Levin Holdings & Cawley Partners**, and **creation of
+the TIRZ + $700M public-funding plan**. **BUT it now faces two more gates:** (1) the **"Venue
+Project Resolution" needs State Comptroller sign-off**, then (2) Plano must **call a special
+election — tentatively Nov 3, 2026 — for VOTER approval** of the public financing (Texas
+venue-tax law). New **renderings** released. Demolition now ~2027.
+**Target:** build 2028–29 · ~20,000-seat arena open for 2031–32.
 
-> **UPDATE 2026-06-08:** June 8 agenda also includes a **separate $15M incentive to Centennial**
-> (mall owner): **$10M for demolition** (inline mall, theater, Dillard's, Crayola Experience) +
-> **$5M for a visitor center** — first hard public money committed to the redevelopment
-> *independent of* the arena. Reinforces "The Bend proceeds with or without the Stars."
-> Meanwhile the **Mavs' Valley View item is reported as headed to Dallas City Council this week.**
+> **UPDATE 2026-06-14:** The 8–0 vote is a green light to *proceed*, not a final commitment.
+> The **new hard gate is a public referendum (~Nov 3, 2026)** + Comptroller approval — so
+> ~$700M of public money now hinges on a ballot, which is where stadium-subsidy deals most
+> often die or get re-cut. Note: that ballot date **coincides with the TX Lt. Gov. race** —
+> a high-turnout, subsidy-skeptical electorate. This is now the single biggest Stars catalyst.
 
 ---
 
