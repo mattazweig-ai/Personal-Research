@@ -1,9 +1,16 @@
 # Watchlist — Dated Catalysts
 
 Theses live or die on catalysts. Track these; update dates/status as they resolve.
-Last refreshed: **2026-06-03**.
+Last refreshed: **2026-06-24**.
 
-## 🔥 Near-term hard dates (added 2026-06-03)
+## Status-check log
+- **2026-06-24:** No material change on **Dallas Midtown / Mavs** side — still in option
+  due-diligence lull. **June 30 off-ramp pending** (~6 days out). No arena entitlement vote,
+  financing, cost, or renderings. *The Premier* (Phase 1) grading underway. Beck rebranding
+  to "Dallas International District." All recent *action* has been Stars/Plano (8–0 approval).
+- **2026-06-14:** Plano approved Stars deal 8–0; new gate = Comptroller + ~Nov 3 referendum.
+
+## 🔥 Near-term hard dates
 
 | When | Catalyst | Why it matters | Status |
 |---|---|---|---|
