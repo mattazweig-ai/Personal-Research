@@ -4,6 +4,12 @@ Theses live or die on catalysts. Track these; update dates/status as they resolv
 Last refreshed: **2026-06-24**.
 
 ## Status-check log
+- **2026-07 (early):** **Mavs June 30 off-ramp passed with NO termination reported** →
+  presumptively proceeded into the $126.9K/mo carry phase (commitment signal; not yet
+  affirmatively confirmed by filing/press). Still pre-entitlement otherwise. Stars/Plano:
+  referendum tax structure revealed — **visitor/event taxes** (car-rental, hotel, parking,
+  admissions, venue-use), politically easier to pass → upgrade Nov-3 odds. Comptroller
+  submission pending; community open houses **July 8 & 14**.
 - **2026-06-24:** No material change on **Dallas Midtown / Mavs** side — still in option
   due-diligence lull. **June 30 off-ramp pending** (~6 days out). No arena entitlement vote,
   financing, cost, or renderings. *The Premier* (Phase 1) grading underway. Beck rebranding
@@ -29,6 +35,7 @@ Last refreshed: **2026-06-24**.
 | When | Catalyst | Why it matters | Status |
 |---|---|---|---|
 | ~Jul 2026 | Mavs wanted site "settled by July" (Welts) | Confirms intent to hit 2031 build | Watching |
+| ~~2026-06-30~~ | ~~Mavs first option off-ramp~~ | **No termination reported → carry payments presumed begun (commitment signal)** | Passed; proceeding (unconfirmed by filing) |
 | TBD 2026 | **Option → closing** on the 104 acres | Option ≠ done; closing is the real green light | Open |
 | TBD 2026–27 | City zoning / PD entitlements for arena district | Density, height, traffic approvals | Not started publicly |
 | TBD | **Financing disclosure** (private vs. mixed) + cost | The biggest swing factor; private = bullish | Unknown |
