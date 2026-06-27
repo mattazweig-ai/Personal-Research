@@ -44,7 +44,7 @@ makes it more underwriteable today:
 3. **The redevelopment happens regardless** — so even an arena no-go still drives a mall→
    mixed-use conversion in a prime Plano location.
 
-## Referendum funding structure (revealed early July 2026) — politically shrewd
+## Referendum funding structure (per June 2026 filings) — politically shrewd
 The ~Nov 3 ballot props fund the $700M via **visitor/event taxes, not resident property/sales
 tax:** short-term **car-rental tax**, **hotel occupancy tax**, **event parking tax**, **event
 admissions tax**, and a **venue-use tax on the team/players**. → Burden falls on attendees &
