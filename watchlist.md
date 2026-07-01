@@ -4,6 +4,12 @@ Theses live or die on catalysts. Track these; update dates/status as they resolv
 Last refreshed: **2026-06-27**.
 
 ## Status-check log
+- **2026-07-01:** 4-agent full scan (SEC/news/county/area). **June 30 off-ramp outcome
+  UNCONFIRMED** in any public source — no new Seritage filing (July payment likely below
+  disclosure threshold; watch Q2 10-Q ~Aug), no news, no recorded deed/memorandum (expected —
+  option not closed; sellers still own; closing not until Jan 31 2028). Land is **optioned,
+  not bought.** Market backdrop: Dallas values ~−4.6% YoY; no data shows arena-driven bump.
+  See research/2026-07-01-land-status-scan-and-homebuyer-note.md for homebuyer guidance.
 - **2026-06-27:** **Mavs June 30 off-ramp is still PENDING (~3 days out)** — not yet resolved;
   watch for a termination notice or, by default, the start of $126.9K/mo carry payments.
   No new Dallas Midtown entitlement/financing/renderings. Stars/Plano: referendum tax
